@@ -1,0 +1,66 @@
+# Task 6 – Encryption & Decryption using GPG
+
+In this task, we learn to use **GPG (GNU Privacy Guard)** to encrypt and decrypt files using symmetric encryption with the **AES** algorithm.
+
+# What is Encryption?
+
+**Encryption** converts readable data into a secure format using a key or password. It protects sensitive data from unauthorized access.
+
+There are two main types:
+
+- **Symmetric**: Same password is used to encrypt and decrypt (this is what GPG uses here)
+- **Asymmetric**: Uses a key-pair (public/private)
+
+# AES Encryption
+
+AES (Advanced Encryption Standard) is a secure encryption algorithm. Common versions include:
+
+- AES-128
+- AES-256 (stronger)
+
+We can use **GPG** to encrypt using either algorithm.
+
+# How to Encrypt with GPG
+
+**Command:**
+gpg --cipher-algo [AES-128|AES-256] --symmetric [file]
+gpg --cipher-algo AES-128 --symmetric history_logs.txt
+
+# How to Decrypt with GPG
+Command:
+gpg [encrypted_file.gpg]
+If it prompts for a password, enter the same one used during encryption.
+
+Example:
+gpg history_logs.txt.gpg
+
+ Q1: You wish to encrypt a file called history_logs.txt using AES-128. What is the full command?
+gpg --cipher-algo AES-128 --symmetric history_logs.txt
+
+Q2: What is the command to decrypt the file you just encrypted?
+gpg history_logs.txt.gpg
+
+Q3: Find an encrypted file called layer4.txt, its password is bob. Use this to locate the flag.
+Steps:
+# Locate the file
+find / -type f -name layer4.txt.gpg 2>/dev/null
+
+# Decrypt with password
+gpg layer4.txt.gpg
+# (Enter: bob when prompted)
+# View the decrypted file
+cat layer4.txt
+
+Practice Activity
+Create a file:
+echo "Linux is awesome!" > mynotes.txt
+Encrypt it:
+gpg --cipher-algo AES-256 --symmetric mynotes.txt
+Decrypt it:
+gpg mynotes.txt.gpg
+
+# Tips
+GPG caches passwords during a session. If it doesn't ask, reboot or try on another machine.
+
+Always read man gpg for more options.
+

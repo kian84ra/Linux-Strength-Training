@@ -1,0 +1,56 @@
+# Task 3 – Working With Files
+
+This task focuses on basic Linux file operations like copying, moving, renaming, and creating files and directories. These are fundamental skills every Linux user must master.
+
+
+# Key Linux Commands for File Management
+
+| Task | Command | Example |
+|------|---------|---------|
+| Copy file or folder | `cp [file/folder] [destination]` | `cp ssh.conf /home/newfolder` |
+| Move or rename file | `mv [file] [destination/newname]` | `mv ssh.conf /home/backup/` |
+| Move multiple files | `mv file1 file2 -t [dest]` | `mv logs.txt notes.txt -t /var/archive` |
+| Move all files from current directory | `mv * [destination]` | `mv * /home/francis/logs` |
+| Rename folder/file | `mv [oldname] [newname]` | `mv report.txt report_old.txt` |
+| Create file | `touch [filename]` | `touch new.txt` |
+| Create folder | `mkdir [dirname]` | `mkdir backups` |
+| Read file | `cat [file]` / `nano [file]` | `cat info.txt` |
+| Run shell script | `./[scriptname]` | `./runme.sh` |
+| Upload file to remote system | `scp file user@ip:/path` | `scp test.txt john@192.168.1.10:/home/john/` |
+| Handle files starting with `-` | `cp -- -weird.txt /home` | `mv -- -logs -newlogs` |
+
+# Note on Filenames with Special Characters
+
+# If a file or folder name begins with a `-`, Linux may treat it as an option. Use `--` to stop option parsing, like so:
+mv -- -logs -newlogs
+
+# Transfer script.py from /home/james/Desktop/ to remote machine 192.168.10.5 under /home/john/scripts using user john
+scp /home/james/Desktop/script.py john@192.168.10.5:/home/john/scripts
+
+# Move all files in current directory to /home/francis/logs
+mv * /home/francis/logs
+
+# Copy file encryption keys (with space in name) to /home/john/logs
+cp "encryption keys" /home/john/logs
+
+### Find readME_hint.txt inside Topson’s directory, follow instructions inside, and get the second flag.
+## Steps:
+# Step 1: Locate the file
+find /home/topson -type f -name readME_hint.txt 2>/dev/null
+
+# Step 2: Read the file
+cat /home/topson/readME_hint.txt
+
+This file gives instructions. Likely:
+mv -- -MoveMe.txt "-march folder"/
+cd -- -march\ folder/
+cat [flag file]
+
+# Additional Practice Commands
+touch sample.txt
+mkdir testFolder
+cp sample.txt testFolder/
+mv sample.txt renamed.txt
+mv renamed.txt /home/user/
+scp renamed.txt john@192.168.0.100:/home/john/
+

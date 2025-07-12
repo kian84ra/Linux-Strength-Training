@@ -1,0 +1,36 @@
+# Task 1: Introduction — Linux Strength Training (TryHackMe)
+
+Welcome to my walkthrough of the **Linux Strength Training** room on [TryHackMe]. This task serves as the **starting point** for anyone looking to improve their Linux command line skills.
+
+## Objectives of This Task
+
+- Practice **basic Linux commands**
+- Build analytical thinking for solving CLI-based challenges
+- Get prepared for deeper tasks by completing these prerequisite rooms first:
+  - [Learn Linux Part 1](https://tryhackme.com/room/zlinux)
+  - [Learn Linux Part 2](https://tryhackme.com/room/zlinuxpart2)
+  - [Learn Linux Part 3](https://tryhackme.com/room/zlinuxpart3)
+
+
+## Key Takeaways
+
+Although no technical commands are required in this task, you should understand:
+
+- This room will walk you through practical Linux scenarios.
+- You’ll need to use tools like `find`, `grep`, `gpg`, `john`, `sqlite3`, and more.
+- Challenges build up your knowledge gradually — ideal for beginners!
+
+
+## Task Summary
+
+In this repository, each task will have its own directory with:
+- Notes and explanations
+- Commands used
+- Answers to TryHackMe questions (when applicable)
+
+You can follow along with this repo to reinforce your own Linux CLI training.
+
+
+## Ready to Start?
+
+Move on to [Task 2: Finding Your Way Around Linux](../Task-2_Finding-Files/README.md)

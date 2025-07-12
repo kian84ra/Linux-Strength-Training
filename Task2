@@ -1,0 +1,72 @@
+# Task 2 – Finding Your Way Around Linux
+
+This task introduces basic file searching using the `find` and `grep` commands. As a Linux user or security researcher, you'll need to locate files and directories based on properties like name, size, owner, group, or content.
+
+# Common `find` Syntax Reference
+
+| Goal | Syntax | Example |
+|------|--------|---------|
+| Find file by name | `find [path] -type f -name [filename]` | `find /home -type f -name report.txt` |
+| Find directory by name | `find [path] -type d -name [dirname]` | `find / -type d -name logs` |
+| Find by size | `find [path] -type f -size [size]` | `find /tmp -type f -size 52k` |
+| Find by user | `find [path] -type f -user [username]` | `find /home -type f -user francis` |
+| Find by group | `find [path] -type f -group [groupname]` | `find /etc -type f -group teamstar` |
+| Find by date modified | `find / -type f -newermt YYYY-MM-DD` | `find / -type f -newermt 2020-06-30` |
+| Find files modified on a specific date | `find / -type f -newermt START ! -newermt END` | `find / -type f -newermt 2016-09-11 ! -newermt 2016-09-13` |
+| Search for keyword in files | `grep -iRl 'keyword' [path]` | `grep -iRl 'flag' /var/logs` |
+
+
+# Question 2
+
+**What is the format for finding a file with the user named Francis and with a size of 52 kilobytes in the directory `/home/francis/`?**
+      find /home/francis -type f -user francis -size 52k
+
+
+# Question 3
+SSH as topson using his password topson. Go to /home/topson/chatlogs and type the following:
+grep -iRl 'keyword'
+
+# Question 4
+What are the characters subsequent to the word you found?
+
+Steps:
+Open the file found earlier:
+less 2019-10-11
+
+Search for the word:
+/keyword
+
+Observe what characters immediately follow the keyword.
+
+# Question 5
+Read the file named ReadMeIfStuck.txt. What is the flag?
+Steps:
+Find the file:
+find / -type f -name ReadMeIfStuck.txt 2>/dev/null
+
+Read the file:
+cat /path/to/ReadMeIfStuck.txt
+
+It may reference another file, like additionalHINT. Find and read it:
+find / -type f -name additionalHINT 2>/dev/null
+cat /path/to/additionalHINT
+
+Then, find a directory:
+find / -type d -name "telephone numbers"
+
+Inside that directory, read a readME.txt, which instructs you to:
+Find file by modified date:
+find /workflows -type f -newermt 2016-09-11 ! -newermt 2016-09-13
+
+View and search the file for the flag:
+less xft/eBQRhHvx
+/Flag
+
+# Pro Tips
+Use 2>/dev/null to suppress permission errors in find:
+find / -name "*.txt" 2>/dev/null
+
+Use explainshell.com to break down complex Linux commands.
+
+Use Ctrl + L to clear terminal, and arrow keys to reuse previous commands.
+

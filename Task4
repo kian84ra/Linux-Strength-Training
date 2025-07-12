@@ -1,0 +1,73 @@
+# Task 4 – Hashing: Introduction
+
+This task covers the basics of **hashing**, why it matters in cybersecurity, and how to crack hashes using tools like **John the Ripper**.
+
+# What Is Hashing?
+
+Hashing is the process of taking an input (e.g., password) and converting it into a fixed-length string using an algorithm like MD5, SHA-1, or SHA-256. This string:
+
+- Is **unique** (in theory)
+- Is **irreversible** (one-way)
+- Cannot be "decrypted" — only cracked by brute-force
+
+
+# Why Hashing Is Important
+
+- Passwords are stored as **hashes**, not plain text
+- Useful for **integrity verification**
+- Some hashing algorithms (e.g., MD5, SHA-1) are vulnerable to **collision attacks**
+
+ [More on hash collisions](https://privacycanada.net/hash-functions/hash-collision-attack)
+
+# How to Crack Hashes with John the Ripper
+
+### Step-by-Step:
+
+1. Save the hash in a text file (e.g., `hash.txt`)
+2. Identify the type of hash (optional):
+   hash-identifier
+
+3. Run John with the appropriate format and wordlist:
+john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+4. To show the cracked password:
+john --show hash.txt
+
+If rockyou.txt is not extracted:
+gunzip /usr/share/wordlists/rockyou.txt.gz
+
+
+| Tool                   | Purpose                                 |
+| ---------------------- | --------------------------------------- |
+| `john`                 | Cracks hashed passwords                 |
+| `hash-identifier`      | Detects hash type                       |
+| `haiti`                | Modern alternative to `hash-identifier` |
+| `md5sum` / `sha256sum` | Creates hashes manually                 |
+
+Q1: Download the hash file and crack the MD5 hash. What is the password?
+john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+Q2: What is the hash type stored in the file hashA.txt?
+You can use:
+cat hashA.txt | hash-identifier
+
+Q3: Crack hashA.txt using John the Ripper. What is the password?
+john --format=raw-md4 --wordlist=/usr/share/wordlists/rockyou.txt hashA.txt
+john --show hashA.txt
+
+Q4: What is the hash type stored in hashB.txt?
+cat hashB.txt | hash-identifier
+
+Q5: Find a wordlist with .mnf extension and use it to crack hashC.txt. What is the password?
+Find .mnf wordlist:
+find / -type f -name "*.mnf" 2>/dev/null
+Run John with custom wordlist:
+john --format=raw-sha256 --wordlist=/path/to/wordlist.mnf hashC.txt
+john --show hashC.txt
+
+Q6: Crack hashB.txt using John the Ripper. What is the password?
+john --format=raw-sha1 --wordlist=/usr/share/wordlists/rockyou.txt hashB.txt
+john --show hashB.txt
+
+
+

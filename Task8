@@ -1,0 +1,90 @@
+# Task 8 – Reading SQL Databases
+
+This task introduces how to **read MySQL databases** on a Linux system — locally and securely — using the MySQL command-line interface.
+
+# What is SQL?
+
+SQL (Structured Query Language) is the language used to interact with **relational databases**. It allows you to:
+
+- Create and manage databases
+- Insert and query data
+- Update and delete data
+
+Relational databases organize data into **tables**, which contain **rows and columns** — just like a spreadsheet.
+ Beginners guide: https://www.elated.com/mysql-for-absolute-beginners/
+
+# MySQL Basics in Linux
+
+## Start/Stop MySQL service
+sudo service mysql start
+sudo service mysql stop
+sudo service mysql restart
+
+
+# Connect to MySQL Locally
+mysql -u [username] -p
+Example:
+mysql -u sarah -p
+# password: password
+
+Load a .sql file (local database dump)
+source employees.sql
+
+# Useful SQL Commands
+
+| Command                  | Description                           |
+| ------------------------ | ------------------------------------- |
+| `SHOW DATABASES;`        | View all available databases          |
+| `USE [database];`        | Select a specific database            |
+| `SHOW TABLES;`           | View tables in current database       |
+| `DESCRIBE [table];`      | Show table structure (columns, types) |
+| `SELECT * FROM [table];` | Show all rows of a table              |
+
+# Find a file called employees.sql and read the SQL database. (Both Sarah and Sameer use the password: password). Find the flag in one of the tables. What is the flag?
+ Full Steps:
+# Step 1: Locate the SQL file
+find / -type f -name employees.sql 2>/dev/null
+
+# Step 2: Start MySQL service
+sudo service mysql start
+
+# Step 3: Log into MySQL
+mysql -u sarah -p
+# Enter password: password
+
+# Step 4: Load the SQL file
+source /path/to/employees.sql;
+
+# Step 5: Show databases
+SHOW DATABASES;
+
+# Step 6: Select the database (e.g. employees)
+USE employees;
+
+# Step 7: Show tables
+SHOW TABLES;
+
+# Step 8: View all data in each table to look for the flag
+SELECT * FROM [table_name];
+
+# Example Workflow
+## Login
+mysql -u sameer -p
+# password: password
+
+## Load DB
+source employees.sql;
+
+## Explore
+SHOW DATABASES;
+USE employees;
+SHOW TABLES;
+DESCRIBE staff;
+SELECT * FROM staff;
+
+# Tips
+Always end SQL commands with a ;
+Use exit; to quit MySQL
+You can use grep Flag to help locate the flag if many rows exist:
+SELECT * FROM staff WHERE info LIKE '%Flag%';
+

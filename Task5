@@ -1,0 +1,33 @@
+# Task 5 – Decoding Base64
+
+This task introduces **Base64 encoding and decoding** — a method of converting binary data to ASCII text, and back.
+
+# What is Base64?
+
+Base64 is a **binary-to-text encoding scheme** used to represent binary data in a readable ASCII string format.  
+For example:
+```text
+Original text: example  
+Base64 encoded: ZXhhbXBsZQ==
+
+
+| Action                      | Command                                      |
+| --------------------------- | -------------------------------------------- |
+| Decode base64               | `base64 -d`                                  |
+| Encode to base64            | `base64`                                     |
+| Pipe from file              | `cat file.txt \| base64 -d`                  |
+| Save decoded output to file | `cat encoded.txt \| base64 -d > decoded.txt` |
+
+Q1: What is the name of the tool which allows us to decode base64 strings?
+Answer:
+base64
+
+Q2: Find a file called encoded.txt. What is the special answer?
+Steps:
+Find the file:
+find / -type f -name encoded.txt 2>/dev/null
+Decode its contents:
+cat encoded.txt | base64 -d
+Answer:
+john
+

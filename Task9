@@ -1,0 +1,55 @@
+# Task 9 – Final Challenge
+
+This final challenge incorporates all the Linux skills you've learned throughout the room. You'll need to navigate directories, read files, find passwords, and escalate privileges.
+
+# Challenge Walkthrough
+
+### Step 1: Access the chat logs
+cd /home/shared/chatlogs
+ls -la
+cat LpnQ
+
+ **Observation**: The chat log contains conversations between users that may include passwords or clues.
+
+### Step 2: Find Sameer's SSH password
+1. Examine the chat logs carefully:
+cat LpnQ | grep -i "password"
+2. You'll find the line:  
+   *"Sameer: I set my SSH password to 'thegreatestpasswordever000'"*
+
+### Step 3: Find SQL database backup password
+1. Look for database-related files:
+find /home/shared -name "*.sql" -o -name "*.db"
+2. Check backup files:
+cat /home/shared/db_backup.txt
+3. You'll find credentials:  
+   *"Backup password: ebqattle"*
+
+### Step 4: Find James' SSH password
+1. Check other chat logs:
+cat /home/shared/chatlogs/*
+2. In file `XyZt`, you'll find:  
+   *"James: My new password is vuimaxcullings"*
+
+### Step 5: SSH as James and escalate to root
+1. Connect via SSH:
+ssh james@[MACHINE_IP]
+# Password: vuimaxcullings
+2. Check sudo privileges:
+sudo -l
+3. Escalate to root:
+sudo su
+# Enter James' password when prompted
+
+### Step 6: Find the root flag
+1. Navigate to root directory:
+cd /root
+ls
+2. View the flag:
+cat root.txt
+
+# Pro Tips
+- Use `grep -i` for case-insensitive searches
+- Check file permissions with `ls -la`
+- Use `sudo -l` to check available privileges
+- Remember command history can be viewed with `history`

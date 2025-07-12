@@ -1,0 +1,39 @@
+# Task 7 – Cracking Encrypted GPG Files
+
+In this task, we simulate a **real-world attack scenario** where we **do not know the password** for a `.gpg` file and attempt to brute-force it using **John the Ripper** and **gpg2john**.
+
+# What is `gpg2john`?
+
+`gpg2john` is a tool that extracts a hash from a `.gpg` file so that John the Ripper can try to crack it.
+
+# Tools Required
+
+| Tool | Purpose |
+|------|---------|
+| `gpg2john` | Extract hash from `.gpg` file |
+| `john` | Brute-force passwords |
+| `tac` | Reverse a wordlist file |
+| `gpg` | Decrypt the file manually after cracking |
+
+
+# Full Process to Crack a GPG File
+
+Step 1: Generate a Hash from the `.gpg` File
+gpg2john personal.txt.gpg > personal.hash
+
+Step 2: Reverse the Wordlist Using tac
+tac data.txt > reversed_data.txt
+
+Step 3: Crack the Password Using John the Ripper
+john --wordlist=reversed_data.txt --format=gpg personal.hash
+John will output the password once cracked.
+
+Step 4: Decrypt the File Using GPG
+gpg personal.txt.gpg
+Then enter the cracked password when prompted.
+
+ Q2: What is written in the now decrypted file?
+cat personal.txt
+Answer:
+getting stronger in linux
+
